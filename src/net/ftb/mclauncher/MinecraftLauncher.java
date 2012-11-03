@@ -141,13 +141,11 @@ public class MinecraftLauncher {
 			String[] jarFiles = new String[] {"minecraft.jar", "lwjgl.jar", "lwjgl_util.jar", "jinput.jar" };
 			HashMap<Integer, File> map = new HashMap<Integer, File>();
 			int counter = 0;
-			boolean forge = false;
 			File tempDir = new File(new File(basepath).getParentFile(), "/instMods/");
 			if(tempDir.isDirectory()) {
 				for(String name : tempDir.list()) {
 					if(name.equalsIgnoreCase(forgename)) {
 						map.put(0, new File(tempDir, forgename));
-						forge = true;
 						counter++;
 					} else {
 						if(name.toLowerCase().endsWith(".zip") || name.toLowerCase().endsWith(".jar")) {
@@ -158,10 +156,6 @@ public class MinecraftLauncher {
 				}
 			}
 			
-			if(!forge){
-				Logger.logInfo("Forge was not loaded. Something probably is wrong");
-			}
-
 			for(String jarFile : jarFiles) {
 				map.put(counter, new File(new File(basepath, "bin"), jarFile));
 				counter++;
